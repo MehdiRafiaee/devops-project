@@ -40,7 +40,14 @@ jobs:
       packages: write
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: app-jar
+          path: target
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
@@ -51,8 +58,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t $DOCKER_IMAGE .
-          docker push $DOCKER_IMAGE
+          docker build -t $DOCKER_IMAGE:snapshot .
+          docker push $DOCKER_IMAGE:snapshot
 
   deploy:
     needs: dockerize
