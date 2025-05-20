@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mehdirafiei-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mehdirafiei
+  template:
+    metadata:
+      labels:
+        app: mehdirafiei
+    spec:
+      containers:
+      - name: mehdirafiei
+        image: registry.gitlab.com/your-user/your-project:snapshot
+        ports:
+        - containerPort: 8080
