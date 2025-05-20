@@ -1,11 +1,11 @@
-# مرحله Build با Maven
-FROM maven:3.9.6-eclipse-temurin-17 as build
+# مرحله Build با Maven + Java 21
+FROM maven:3.9.6-eclipse-temurin-21 as build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# مرحله Runtime با JDK
-FROM eclipse-temurin:17
+# مرحله اجرا با Java 21
+FROM eclipse-temurin:21
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
