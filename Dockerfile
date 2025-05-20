@@ -1,12 +1,11 @@
-# Use an official OpenJDK runtime as a parent image
-FROM eclipse-temurin:17-jdk
-
-#  the working directory in the container
+# مرحله Build با Maven
+FROM maven:3.9.6-eclipse-temurin-17 as build
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the jar file from target to the container
-COPY target/mehdirafiei-0.0.1-SNAPSHOT.jar app.jar
-
-
-# Run the jar file
+# مرحله Runtime با JDK
+FROM eclipse-temurin:17
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
