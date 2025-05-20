@@ -23,6 +23,8 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
+      - name: Check contents of target folder
+        run: ls -lah target
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v3
