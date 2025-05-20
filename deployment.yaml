@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: mehdirafiei
-        image: registry.gitlab.com/your-user/your-project:snapshot
+        image: registry.gitlab.com/MehdiRafiaee/devops-project:snapshot
         ports:
         - containerPort: 8080
