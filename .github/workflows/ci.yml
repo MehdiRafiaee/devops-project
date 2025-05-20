@@ -70,5 +70,5 @@ jobs:
 
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f devops-project/deployment.yaml
-          kubectl apply -f devops-project/service.yaml
+          kubectl apply -f ./deployment.yaml
+          kubectl apply -f ./service.yaml
