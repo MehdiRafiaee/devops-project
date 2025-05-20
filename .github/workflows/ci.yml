@@ -8,7 +8,6 @@ on:
 env:
   DOCKER_IMAGE: ghcr.io/mehdirafiaee/devops-project
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +23,7 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
+
       - name: Check contents of target folder
         run: ls -lah target
 
@@ -65,11 +65,13 @@ jobs:
     needs: dockerize
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code   #  این مرحله برای دسترسی به فایل‌های YAML نیاز است
+        uses: actions/checkout@v3
+
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
 
       - name: Apply Kubernetes manifests
         run: |
           kubectl apply -f deployment.yaml
-
           kubectl apply -f service.yaml
