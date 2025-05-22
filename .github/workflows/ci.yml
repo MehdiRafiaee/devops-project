@@ -71,7 +71,7 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
 
-      - name: Apply Kubernetes manifests
-        run: |
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
+      #- name: Apply Kubernetes manifests
+       # run: |
+        #  kubectl apply -f deployment.yaml
+        #  kubectl apply -f service.yaml
